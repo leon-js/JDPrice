@@ -50,5 +50,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  goEmail: function() {
+    wx.navigateTo({
+      url: '../email/email'
+    })
   }
 })

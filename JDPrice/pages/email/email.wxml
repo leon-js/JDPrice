@@ -1,0 +1,13 @@
+<!--email.wxml-->
+<view class="container">
+    <view class="content">
+        <image class="userinfo-avatar" src='../../static/testImg/unlogin.png' ></image>
+        <view class="email">
+                <label class="emailInput">邮箱</label><input bindinput="bindKeyInputEmail" placeholder="请输入邮箱" id="email" type="text" class="emailInputOne" name="email" />
+                <button bindtap="sendEmail" class="emailBtn" disabled="{{disabled}}"><span>{{emailBtn}}</span></button>
+        </view>
+        <view class="email">
+                <label class="verificationCode">验证码</label><input type="number" placeholder="请输入邮箱验证码" class="verificationCodeOne" />
+        </view>
+    </view>
+</view>

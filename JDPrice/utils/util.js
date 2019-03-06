@@ -14,6 +14,29 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 邮箱验证
+function isEmail(mail) {          
+  var reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;    
+  if(!reg.test(mail)){    
+    wx.showToast({
+      title: `输入邮箱有误\r\n请重新输入`,
+      //小程序中文字换行需要\r\n
+      icon: 'none',
+      duration: 2000
+    })
+    return false
+  }else {
+    wx.showToast({
+      title: `已发送验证码`,
+      //小程序中文字换行需要\r\n
+      icon: 'none',
+      duration: 2000
+    })
+    return true
+  }        
+}    
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  isEmail: isEmail
 }
