@@ -43,7 +43,7 @@ Page({
                 console.log(res.data) // 打印返回值,本项目目前用不到
             },
             fail() {
-                console.log('接口错误，测试用')
+                console.log('接口错误')
             }
         })
         that.setData({
