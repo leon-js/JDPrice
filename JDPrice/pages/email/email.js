@@ -30,13 +30,14 @@ Page({
     if(util.isEmail(that.data.inputEmail) == true) {
         const email = that.data.inputEmail
         wx.request({
-            url: '', // 接口地址
+          url: 'http://127.0.0.1:8080/user/sentVerifyEmail', // 接口地址
             method: 'post',
             data: {
-                email // 发送的email
+              email:email, // 发送的email,
+              sessionId:wx.getStorageSync("sessionId")
             },
             header: {
-                'content-type': 'application/json' // 对数据进行 JSON 序列化
+              'content-type': 'application/x-www-form-urlencoded' // 对数据进行 JSON 序列化
             },
             success(res) {
                 console.log(res.data) // 打印返回值,本项目目前用不到

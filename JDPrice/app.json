@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/email/email",
+    
     "pages/index/index",
+    "pages/email/email",
     "pages/logs/logs"
   ],
   "window":{
