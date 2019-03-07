@@ -16,6 +16,7 @@ Page({
     })
   },
   onLoad: function () {
+    this.getSession()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -55,5 +56,29 @@ Page({
     wx.navigateTo({
       url: '../email/email'
     })
+  },
+  getSession:function(){
+    var that = this;
+    wx.login({
+      success:function(res){
+        // console.log(res.code)
+        if(res.code){
+          wx.request({
+            url: 'http://127.0.0.1:8080/user/login',
+            data:{
+              code:res.code
+            },
+            success:function(res){
+              if(res.data.data){
+                console.log(res.data.data)
+                  wx.setStorageSync("sessionId", res.data.data)
+              }
+            }
+          })
+        }
+
+      }
+    })
   }
+
 })
