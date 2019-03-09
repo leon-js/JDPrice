@@ -1,5 +1,5 @@
 const util = require('../../utils/util.js')
-
+const app = getApp()
 
 Page({
   data: {
@@ -7,7 +7,15 @@ Page({
     inputEmail: '',
     inputVerificationCode: '',
     emailBtn: '获取验证码',
-    disabled: true
+    disabledPostCode: true,
+    disabledBinding: true,
+    loading: false,
+    userInfo: {},
+  },
+  onLoad: function() {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    })
   },
   bindKeyInputEmail: function(e) {
       this.setData({
@@ -15,12 +23,26 @@ Page({
       })
       if(e.detail.value !== '') {
           this.setData({
-              disabled: false
+            disabledPostCode: false
           })
       }else {
         this.setData({
-            disabled: true
+          disabledPostCode: true
         })
+      }
+  },
+  bindKeyInputCode: function(e){
+      this.setData({
+        inputVerificationCode: e.detail.value
+      })
+    if (this.data.inputEmail !== '' && e.detail.value !== ''){
+      this.setData({
+        disabledBinding: false
+      })
+      }else {
+      this.setData({
+        disabledBinding: true
+      })
       }
   },
   sendEmail: function(e) {
@@ -68,5 +90,42 @@ Page({
     }else {
         console.log(2)
     }
+  },
+  verificationBtn: function(){
+    var that = this
+    that.setData({
+      loading: true
+    })
+    const email = that.data.inputEmail
+    const verificationCode = that.data.verificationCode
+    wx.request({
+      // url: 'http://127.0.0.1:8080/user/verify',
+      url: 'http://139.199.206.151:5000/api/getUsers',
+      // method: 'post',
+      method: 'get',
+      data: {
+        email: email,
+        code: verificationCode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' 
+      },
+      success(res) {
+        console.log(res.data)
+        if(res.data[0].username == '梁李昊'){
+          that.setData({
+            loading: false
+          })
+          console.log("绑定成功")
+          // 关闭当前页面，跳转到应用内的某个页面。
+          wx.redirectTo({
+            url: '../index/index'
+          })
+        }
+      },
+      fail() {
+        console.log('接口错误')
+      }
+    })
   }
 })

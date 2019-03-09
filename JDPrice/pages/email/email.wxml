@@ -1,13 +1,16 @@
 <!--email.wxml-->
-<view class="container">
+<view class="ess">
     <view class="content">
-        <image class="userinfo-avatar" src='../../static/testImg/unlogin.png' ></image>
+        <!-- <image class="userinfo-avatar" src='../../static/testImg/unlogin.png' ></image> -->
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
         <view class="email">
-                <label class="emailInput">邮箱</label><input bindinput="bindKeyInputEmail" placeholder="请输入邮箱" id="email" type="text" class="emailInputOne" name="email" />
-                <button bindtap="sendEmail" class="emailBtn" disabled="{{disabled}}"><span>{{emailBtn}}</span></button>
+                <label class="emailInput">邮箱</label><input bindinput="bindKeyInputEmail" placeholder="请输入邮箱" placeholder-style="color:#e2e2e2;" id="email" type="text" class="emailInputOne" name="email" />
+                <button bindtap="sendEmail" class="emailBtn" disabled="{{disabledPostCode}}"><span>{{emailBtn}}</span></button>
         </view>
         <view class="email">
-                <label class="verificationCode">验证码</label><input type="number" placeholder="请输入邮箱验证码" class="verificationCodeOne" />
+                <label class="verificationCode">验证码</label><input bindinput="bindKeyInputCode" type="number" placeholder="请输入邮箱验证码" placeholder-style="color:#e2e2e2;" class="verificationCodeOne" />
         </view>
+        <button class="verificationBtn" loading="{{loading}}" 
+        disabled="{{disabledBinding}}" bindtap="verificationBtn"> 绑定邮箱 </button>
     </view>
 </view>

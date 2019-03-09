@@ -3,6 +3,10 @@ page {
     background-color: #f0eff4;
 }
 
+.ess {
+  margin-top: 50rpx;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -11,8 +15,8 @@ page {
 }
   
 .userinfo-avatar {
-    width: 128rpx;
-    height: 128rpx;
+    width: 180rpx;
+    height: 180rpx;
     margin: 20rpx;
     border-radius: 50%;
     margin-bottom: 50rpx;
@@ -87,4 +91,20 @@ page {
 
 .emailBtn span {
     line-height: 70rpx;
+}
+
+.verificationBtn{
+    margin-top:30rpx;
+    background-color: #f10215;
+    width: 700rpx; 
+    color: white;
+}
+
+.verificationBtn::after{
+  border: 0;
+}
+
+.content .verificationBtn[disabled]{
+  background-color: #ec9093;
+  color: #f3eded;
 }
