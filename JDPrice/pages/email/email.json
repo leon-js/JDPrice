@@ -1,4 +1,5 @@
 {
     "usingComponents": {},
-    "navigationBarBackgroundColor": "#f0eff4"
+    "navigationBarBackgroundColor": "#f0eff4",
+    "navigationBarTitleText": "邮箱验证"
 }
