@@ -1,0 +1,13 @@
+<view class='kinds'>
+  <view class='topbar'>
+    <view class='topbar_Btnbg'>
+      <view class='topbar_Btnred'></view>
+      <view class="topbar_Btn">
+        <view class='topbar_Btntxt'>推荐关注</view>
+      </view>
+      <view class="topbar_Btn">
+        <view class='topbar_Btntxt'>热门关注</view>
+      </view>
+    </view>
+  </view>
+</view>

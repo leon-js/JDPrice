@@ -1,0 +1,40 @@
+page {
+    height: 100%;
+    background-color: #f0eff4;
+}
+
+.topbar {
+  background-color: yellowgreen;
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar_Btnbg {
+  width: 400rpx;
+  height: 80rpx;
+  background-color: #880000;
+  border-radius: 40rpx;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  font-weight: 600;
+  font-size: 30rpx;
+  align-items: center;
+}
+
+.topbar_Btn {
+  z-index: 1;
+}
+
+.topbar_Btnred {
+  height: 70rpx;
+  width: 200rpx;
+  background-color: red;
+  position:absolute;
+  border-radius: 35rpx;
+  left: 180rpx;
+  top: 15rpx;
+}
