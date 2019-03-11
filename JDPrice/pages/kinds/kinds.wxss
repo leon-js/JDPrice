@@ -38,3 +38,9 @@ page {
   left: 180rpx;
   top: 15rpx;
 }
+
+.test {
+  height: 2000rpx;
+  width: 100%;
+  background-color: yellow;
+}

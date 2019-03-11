@@ -7,5 +7,12 @@ Page({
   },
   onLoad: function () {
     
+  },
+  onPageScroll: function (e) {
+    if (e.scrollTop < 0) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
   }
 })
