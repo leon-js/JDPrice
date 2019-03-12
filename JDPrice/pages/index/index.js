@@ -30,6 +30,7 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -40,16 +41,37 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+          
+          // wx.request({
+          //   url: 'http://127.0.0.1:8080/user/sentVerifyEmail',
+          //   data: {
+              
+          //   },
+          // })
         }
       })
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
+    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+    var rawData = e.detail.rawData
+    var encryptedData = e.detail.encryptedData
+    var iv = e.detail.iv
+    wx.request({
+      url: 'http://127.0.0.1:8080/user/decodeUserInfo',
+      data:{
+        encryptedData:encryptedData,
+        iv :iv,
+        sessionId: wx.getStorageSync("sessionId")
+      }, 
+      success: function (res) {
+        console.log(res)
+      }
     })
   },
   goEmail: function() {

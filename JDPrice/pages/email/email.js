@@ -16,6 +16,7 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo,
     })
+   
   },
   bindKeyInputEmail: function(e) {
       this.setData({
@@ -35,6 +36,7 @@ Page({
       this.setData({
         inputVerificationCode: e.detail.value
       })
+    console.log(this.data.inputVerificationCode)
     if (this.data.inputEmail !== '' && e.detail.value !== ''){
       this.setData({
         disabledBinding: false
@@ -97,15 +99,15 @@ Page({
       loading: true
     })
     const email = that.data.inputEmail
-    const verificationCode = that.data.verificationCode
+    const verificationCode = that.data.inputVerificationCode
+    // console.log(verificationCode)
     wx.request({
-      // url: 'http://127.0.0.1:8080/user/verify',
-      url: 'http://139.199.206.151:5000/api/getUsers',
-      // method: 'post',
-      method: 'get',
+      url: 'http://127.0.0.1:8080/user/verify',
+      method: 'post',
       data: {
         email: email,
-        code: verificationCode
+        code: verificationCode,
+        sessionId: wx.getStorageSync("sessionId")
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded' 
