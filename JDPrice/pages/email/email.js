@@ -16,6 +16,7 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo,
     })
+   
   },
   bindKeyInputEmail: function(e) {
       this.setData({
@@ -99,10 +100,8 @@ Page({
     const email = that.data.inputEmail
     const verificationCode = that.data.verificationCode
     wx.request({
-      // url: 'http://127.0.0.1:8080/user/verify',
-      url: 'http://139.199.206.151:5000/api/getUsers',
-      // method: 'post',
-      method: 'get',
+      url: 'http://127.0.0.1:8080/user/verify',
+      method: 'post',
       data: {
         email: email,
         code: verificationCode
