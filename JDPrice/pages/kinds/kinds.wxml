@@ -10,4 +10,12 @@
       </view>
     </view>
   </view>
+  <block wx:key="{{index}}" wx:for="{{commodity_type}}" wx:for-index="index">
+    <navigator class='content' open-type='navigate' url='../secondKinds/secondKinds?name={{item.name}}'>
+      <image class='content_img' src='../../static/testImg/unlogin.png'></image>
+      <text class='content_text'>{{item.name}}</text>
+      <image class='content_text_right' src='../../static/testImg/unlogin.png'></image>
+    </navigator>
+    <view class="person-line"></view>
+  </block>
 </view>

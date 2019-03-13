@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/kinds/kinds",
+    "pages/secondKinds/secondKinds",
     "pages/index/index",
     "pages/email/email",
     "pages/logs/logs"
@@ -10,5 +11,22 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "selectedColor": "#EA5149",
+    "list": [
+      {
+        "pagePath": "pages/kinds/kinds",
+        "text": "首页",
+        "iconPath": "static/testImg/unlogin.png",
+        "selectedIconPath": "static/testImg/unlogin.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "我",
+        "iconPath": "static/testImg/unlogin.png",
+        "selectedIconPath": "static/testImg/unlogin.png"
+      }
+    ]
   }
 }

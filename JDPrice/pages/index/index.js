@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const global_variable = require('../../utils/global_variable.js')
 
 Page({
   data: {
@@ -63,7 +64,7 @@ Page({
     var encryptedData = e.detail.encryptedData
     var iv = e.detail.iv
     wx.request({
-      url: 'http://127.0.0.1:8080/user/decodeUserInfo',
+      url: global_variable.url + '/user/decodeUserInfo',
       data:{
         encryptedData:encryptedData,
         iv :iv,
@@ -86,7 +87,7 @@ Page({
         // console.log(res.code)
         if(res.code){
           wx.request({
-            url: 'http://127.0.0.1:8080/user/login',
+            url: global_variable.url + '/user/login',
             data:{
               code:res.code
             },

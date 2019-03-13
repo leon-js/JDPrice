@@ -1,5 +1,6 @@
 const util = require('../../utils/util.js')
 const app = getApp()
+const global_variable = require('../../utils/global_variable.js')
 
 Page({
   data: {
@@ -54,7 +55,7 @@ Page({
     if(util.isEmail(that.data.inputEmail) == true) {
         const email = that.data.inputEmail
         wx.request({
-          url: 'http://127.0.0.1:8080/user/sentVerifyEmail', // 接口地址
+          url: global_variable.url + '/user/sentVerifyEmail', // 接口地址
             method: 'post',
             data: {
               email:email, // 发送的email,
@@ -102,7 +103,7 @@ Page({
     const verificationCode = that.data.inputVerificationCode
     // console.log(verificationCode)
     wx.request({
-      url: 'http://127.0.0.1:8080/user/verify',
+      url: global_variable.url + '/user/verify',
       method: 'post',
       data: {
         email: email,

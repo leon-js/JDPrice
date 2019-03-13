@@ -4,7 +4,7 @@ page {
 }
 
 .topbar {
-  background-color: yellowgreen;
+  background-color: red;
   height: 100rpx;
   width: 100%;
   display: flex;
@@ -34,7 +34,7 @@ page {
   width: 200rpx;
   background-color: red;
   position:absolute;
-  border-radius: 35rpx;
+  border-radius: 40rpx;
   left: 180rpx;
   top: 15rpx;
 }
@@ -43,4 +43,46 @@ page {
   height: 2000rpx;
   width: 100%;
   background-color: yellow;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  height: 80rpx;
+  width: 750rpx;
+  background-color: white;
+  /* line-height: 35px; 文字垂直居中 既然用了flex 就采用align-items: center */
+  align-items: center;
+}
+
+.content_img{
+  height: 50rpx;
+  width: 50rpx;
+  margin: 20rpx 20rpx 20rpx 40rpx;
+}
+
+.content_text{
+  color: black;
+  font-size: 28rpx;
+  margin-left: 25rpx;
+  width: 550rpx;
+  font-weight: 600;
+}
+
+.content_text_right{
+  height: 50rpx;
+  width: 50rpx;
+  margin: 20rpx 20rpx 20rpx 40rpx;
+}
+
+.person-line {
+  width: 660rpx;
+  height: 2rpx;
+  background: lightgray;
+  margin-left: 90rpx;
+}
+
+.navigator-hover {
+  color: blue;
 }
