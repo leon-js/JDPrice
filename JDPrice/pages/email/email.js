@@ -127,7 +127,7 @@ Page({
         }
       },
       fail() {
-        console.log('接口错误')
+        console.log('接口错误') //
       }
     })
   }
