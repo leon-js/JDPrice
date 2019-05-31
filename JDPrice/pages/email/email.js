@@ -17,7 +17,6 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo,
     })
-   
   },
   bindKeyInputEmail: function(e) {
       this.setData({
@@ -37,7 +36,7 @@ Page({
       this.setData({
         inputVerificationCode: e.detail.value
       })
-    console.log(this.data.inputVerificationCode)
+    // console.log(this.data.inputVerificationCode)
     if (this.data.inputEmail !== '' && e.detail.value !== ''){
       this.setData({
         disabledBinding: false
@@ -75,7 +74,7 @@ Page({
             disabled: true,
             emailBtn: '正在发送'
         })
-        var countdown = 5
+        var countdown = 60
         var interval = setInterval(function() {
             that.setData({
                 disabled: true,
@@ -114,15 +113,30 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' 
       },
       success(res) {
+        console.log(res)
         console.log(res.data)
-        if(res.data[0].username == '梁李昊'){
+        if(res.data.data){
           that.setData({
             loading: false
           })
           console.log("绑定成功")
           // 关闭当前页面，跳转到应用内的某个页面。
-          wx.redirectTo({
-            url: '../index/index'
+          wx.navigateBack({
+            delta: 1
+          })
+          wx.showToast({
+            title: `绑定成功`,
+            icon: 'success',
+            duration: 2000
+          })
+        }else {
+          that.setData({
+            loading: false
+          })
+          wx.showToast({
+            title: `验证码错误`,
+            icon: 'none',
+            duration: 2000
           })
         }
       },
@@ -130,5 +144,12 @@ Page({
         console.log('接口错误') //
       }
     })
+  },
+  onPageScroll: function (e) {
+    if (e.scrollTop < 0) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
   }
 })

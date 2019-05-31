@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "商品详细",
+  "navigationBarBackgroundColor": "#F0ECEC",
+  "enablePullDownRefresh": false
+}

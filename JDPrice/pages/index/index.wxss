@@ -1,5 +1,5 @@
 /**index.wxss**/
-.userinfo {
+/* .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,4 +18,116 @@
 
 .usermotto {
   margin-top: 200px;
+} */
+.personal{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.head{
+    width: 100%;
+    height: 200px;
+    /* background-color: #DAA520; */
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: black;
+}
+
+.Simple_record{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+}
+
+.Punch_the_clock{
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  width: 220rpx;
+}
+
+.Punch_the_clock text{
+  text-align: center;
+}
+
+.Punch_the_clock text.small_eng{
+  font-size: 25rpx;
+  color: rgb(92, 90, 90)
+}
+
+.body{
+  width: 750rpx;
+  height: 100%;
+  background-color: rgb(240, 236, 236);
+  display: flex;
+  flex-direction: column;
+}
+
+.content:nth-of-type(1) {
+  margin-top: 10px;
+}
+
+.content_bg{
+  background-color: white;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  height: 80rpx;
+  width: 750rpx;
+  background-color: white;
+  /* line-height: 35px; 文字垂直居中 既然用了flex 就采用align-items: center */
+  align-items: center;
+}
+
+.content_img{
+  height: 50rpx;
+  width: 50rpx;
+  margin: 20rpx 20rpx 20rpx 40rpx;
+}
+
+.content_text{
+  color: gray;
+  font-size: 28rpx;
+  margin-left: 25rpx;
+  width: 550rpx;
+}
+
+.content_text_right{
+  color: gray;
+  font-size: 30rpx;
+}
+
+.person-line {
+  width: 660rpx;
+  height: 2rpx;
+  background: lightgray;
+  margin-left: 90rpx;
 }

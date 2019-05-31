@@ -1,5 +1,6 @@
 {
     "usingComponents": {},
     "navigationBarBackgroundColor": "#f0eff4",
-    "navigationBarTitleText": "邮箱验证"
+    "navigationBarTitleText": "邮箱验证",
+    "enablePullDownRefresh": false
 }

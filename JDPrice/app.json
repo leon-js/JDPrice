@@ -1,9 +1,14 @@
 {
   "pages":[
-    "pages/kinds/kinds",
-    "pages/secondKinds/secondKinds",
+    
+    "pages/rank/rank",
+    "pages/details/details",
     "pages/index/index",
+    "pages/all/all",
     "pages/email/email",
+    "pages/kind/kind",
+    "pages/list/list",
+    "pages/Recommend/Recommend",
     "pages/logs/logs"
   ],
   "window":{
@@ -13,20 +18,29 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "selectedColor": "#EA5149",
+    "selectedColor": "#d4237a",
     "list": [
       {
-        "pagePath": "pages/kinds/kinds",
-        "text": "首页",
-        "iconPath": "static/testImg/unlogin.png",
-        "selectedIconPath": "static/testImg/unlogin.png"
+        "pagePath": "pages/kind/kind",
+        "text": "分类",
+        "iconPath": "image/分类.png",
+        "selectedIconPath": "image/分类on.png"
+      },
+      {
+        "pagePath": "pages/rank/rank",
+        "text": "排行",
+        "iconPath": "image/rank.png",
+        "selectedIconPath": "image/rankon.png"
       },
       {
         "pagePath": "pages/index/index",
         "text": "我",
-        "iconPath": "static/testImg/unlogin.png",
-        "selectedIconPath": "static/testImg/unlogin.png"
+        "iconPath": "image/个人.png",
+        "selectedIconPath": "image/个人on.png"
       }
     ]
+  },
+  "networkTimeout": {
+    "request": 400000000
   }
 }

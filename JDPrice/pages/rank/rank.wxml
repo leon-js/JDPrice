@@ -1,0 +1,37 @@
+<view class="main">
+    <view class="banner">
+        <image src="/image/002.jpg"></image>
+    </view>
+
+    <view class="list-box">
+        <view class="newest-list" wx:for="{{third}}"  wx:key="idx">
+            <view data-item="{{item.productId}}" bindtap='test'>
+                <image src="{{item.imgUrl}}"></image>
+                <!-- <view class="newest-text"><text>{{item.name}}</text></view> -->
+                <!-- <view class="newest-text"><text>￥ 0.01</text></view> -->
+            </view>
+             <view class="newest-text">
+              <text>{{item.name}}</text>
+              <text style='margin-top:20rpx;'>当前售价：¥ {{item.curPrice}}</text>
+              <text>上一次售价：¥ {{item.prePrice}}</text>
+
+              <!-- <text style='margin-top:30rpx;'>惊喜直降  <text style='font-size:30rpx;color:red;'>¥ {{ item.prePrice-item.curPrice }}</text></text> -->
+              <text style='margin-top:30rpx;'>{{ (item.prePrice-item.curPrice) > 100? '惊喜直降 ':'小幅降价 '}}  <text style='font-size:45rpx;color:red;'>{{ (item.prePrice-item.curPrice) > 100?'¥ '+(item.prePrice-item.curPrice):'' }}</text><text style='font-size:30rpx;color:red;'>{{ (item.prePrice-item.curPrice) > 100?'':'¥ '+(item.prePrice-item.curPrice) }}</text></text>
+             </view>
+        </view>
+        <!-- <view class="newest-list">
+            <navigator url="../details/details">
+                <image src="/image/s5.png"></image>
+                <view class="newest-text"><text>芹菜 半斤</text></view>
+                <view class="newest-text"><text>￥ 0.02</text></view>
+            </navigator>
+        </view> -->
+        <!-- <view class="newest-list">
+            <navigator url="../details/details">
+                <image src="/image/s6.png"></image>
+                <view class="newest-text"><text>素米 375g</text></view>
+                <view class="newest-text"><text>￥ 0.03</text></view>
+            </navigator>
+        </view> -->
+    </view>
+</view>

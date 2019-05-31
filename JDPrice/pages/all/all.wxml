@@ -1,0 +1,38 @@
+<view class="main">
+    <view class="banner">
+        <image src="/image/002.jpg"></image>
+    </view>
+
+    <view style='border-top-left-radius:8px;border-top-right-radius:8px;width:100%;height:38px;display:inline-block;background:#fff;'>
+         <!-- <view style='width:20%;display:inline-block;height:100%;'><image src='../../image/gotop.png' style='display:inline;' mode="aspectFit"></image></view> -->
+         <input class='serch' style='width:700rpx;display:inline-block;border-radius: 20rpx;font-size:12px;' placeholder-class='search-placeholder' placeholder-style='font-size:12px;' bindinput='search' value="{{inputdata}}" placeholder='搜索已关注商品'>
+         </input>
+       </view>
+
+
+    <view class="list-box">
+        <view class="newest-list" wx:for="{{third}}"  wx:key="idx">
+            <view data-item="{{item.productId}}" bindtap='test'>
+                <image src="{{item.imgUrl}}"></image>
+                <!-- <view class="newest-text"><text>{{item.name}}</text></view> -->
+                <!-- <view class="newest-text"><text>￥ 0.01</text></view> -->
+            </view>
+             <view class="newest-text"><text>{{item.name}}</text></view>
+        </view>
+        <!-- <view class="newest-list">
+            <navigator url="../details/details">
+                <image src="/image/s5.png"></image>
+                <view class="newest-text"><text>芹菜 半斤</text></view>
+                <view class="newest-text"><text>￥ 0.02</text></view>
+            </navigator>
+        </view> -->
+        <!-- <view class="newest-list">
+            <navigator url="../details/details">
+                <image src="/image/s6.png"></image>
+                <view class="newest-text"><text>素米 375g</text></view>
+                <view class="newest-text"><text>￥ 0.03</text></view>
+            </navigator>
+        </view> -->
+        <view wx:if="{{!(third.length > 0)}}">没找到商品</view>
+    </view>
+</view>

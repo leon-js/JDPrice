@@ -17,8 +17,9 @@ Page({
     })
   },
   onLoad: function () {
-    this.getSession()
+    // this.getSession()
     if (app.globalData.userInfo) {
+      console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -54,54 +55,147 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    // console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-    var rawData = e.detail.rawData
-    var encryptedData = e.detail.encryptedData
-    var iv = e.detail.iv
-    wx.request({
-      url: global_variable.url + '/user/decodeUserInfo',
-      data:{
-        encryptedData:encryptedData,
-        iv :iv,
-        sessionId: wx.getStorageSync("sessionId")
-      }, 
-      success: function (res) {
-        console.log(res)
-      }
-    })
+    console.log(e)
+    var that=this
+    if (e.detail.rawData){
+      console.log(1)
+      app.globalData.userInfo = e.detail.userInfo
+      that.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+      var rawData = e.detail.rawData
+      var encryptedData = e.detail.encryptedData
+      var iv = e.detail.iv
+      wx.request({
+        url: global_variable.url + '/user/decodeUserInfo',
+        data: {
+          encryptedData: encryptedData,
+          iv: iv,
+          sessionId: wx.getStorageSync("sessionId")
+        },
+        success: function (res) {
+          console.log(res)
+          if (wx.getStorageSync('fromdetails') == true) {
+            var productId = wx.getStorageSync('productId')
+            wx.showLoading({
+              title: '加载中...',
+            })
+            wx.request({
+              url: global_variable.url + '/product/priceChange/' + productId,
+              success: function (res) {
+                var arr = res.data.data
+                var newarr = arr.sort((a, b) => a.createTime.localeCompare(b.createTime));
+                console.log(newarr)
+                var price = []
+                var created = []
+                for (var i = 0; i < newarr.length; i++) {
+                  price[i] = newarr[i].curPrice
+                  created[i] = newarr[i].created
+                }
+                console.log(price, created)
+                app.globalData.price = price
+                app.globalData.created = created
+                console.log(app.globalData.price, app.globalData.created)
+                wx.hideLoading();
+                wx.navigateTo({
+                  url: '/pages/details/details?id=' + productId
+                });
+              },
+              fail() {
+                wx.showToast({
+                  title: `请求超时\r\n请稍后下拉尝试`,
+                  //小程序中文字换行需要\r\n
+                  icon: 'none',
+                  duration: 2000
+                })
+                console.log('请求超时')
+                wx.hideLoading();
+              }
+            })
+            wx.removeStorageSync('fromdetails')
+            wx.removeStorageSync('productId')
+          }
+        }
+      })
+
+      // wx.request({
+      //   url: global_variable.url + 'subscribe/all?sessionId=' + wx.getStorageSync("sessionId"),
+      //   success: function (res) {
+      //     wx.setStorageSync('all', res.data.data)
+      //   }
+      // })
+
+    }else {
+      wx.showToast({
+        title: `没有授权\r\将失去一部分权限`,
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   goEmail: function() {
-    wx.navigateTo({
-      url: '../email/email'
-    })
+    var that = this
+    if (that.data.hasUserInfo){
+      wx.navigateTo({
+        url: '../email/email'
+      })
+    }else {
+      wx.showToast({
+        title: `请先授权`,
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
-  getSession:function(){
-    var that = this;
-    wx.login({
-      success:function(res){
-        // console.log(res.code)
-        if(res.code){
-          wx.request({
-            url: global_variable.url + '/user/login',
-            data:{
-              code:res.code
-            },
-            success:function(res){
-              if(res.data.data){
-                console.log(res.data.data)
-                  wx.setStorageSync("sessionId", res.data.data)
-              }
-            }
-          })
-        }
+  goAll: function() {
+    var that = this
+    if (that.data.hasUserInfo) {
+      var sessionId = wx.getStorageSync('sessionId')
+      wx.navigateTo({
+        url: '../all/all?sessionId=' + sessionId
+      })
+    } else {
+      wx.showToast({
+        title: `请先授权`,
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+  // getSession:function(){
+  //   var that = this;
+  //   wx.login({
+  //     success:function(res){
+  //       // console.log(res.code)
+  //       if(res.code){
+  //         wx.request({
+  //           url: global_variable.url + '/user/login',
+  //           data:{
+  //             code:res.code
+  //           },
+  //           success:function(res){
+  //             if(res.data.data){
+  //               console.log(res.data.data)
+  //                 wx.setStorageSync("sessionId", res.data.data)
+  //             }
+  //           }
+  //         })
+  //       }
 
-      }
+  //     }
+  //   })
+  // },
+  onPageScroll: function (e) {
+    if (e.scrollTop < 0) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
+  },
+  chat: function () {
+    wx.navigateTo({
+      url: '../logs/logs'
     })
   }
-
 })

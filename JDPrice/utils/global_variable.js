@@ -1,4 +1,4 @@
-const url = "http://45bd565d.ngrok.io"
+const url = "http://111.231.255.225:8080/jdProduct_war/"
 
 module.exports = {
   url: url

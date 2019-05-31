@@ -1,4 +1,12 @@
 //app.js
+const global_variable = require('./utils/global_variable.js')
+function findstr(str, cha, num) {
+  var x = str.indexOf(cha);
+  for (var i = 0; i < num; i++) {
+    x = str.indexOf(cha, x + 1);
+  }
+  return x;
+}
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,6 +18,34 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          wx.request({
+            url: global_variable.url + '/user/login',
+            data: {
+              code: res.code
+            },
+            success: function (res) {
+              if (res.data.data) {
+                console.log(res)
+                wx.setStorageSync("sessionId", res.data.data)
+                  wx.request({
+                  url: global_variable.url + 'subscribe/all?sessionId=' + wx.getStorageSync("sessionId"),
+                  success: function (res) {
+                    var third = res.data.data
+                    var allProductId = []
+                    for (var i = 0; i < third.length; i++) {
+                      var end = third[i].imgUrl.replace(third[i].imgUrl.slice(findstr(third[i].imgUrl, '/', 3) + 1, findstr(third[i].imgUrl, '_', 0)), 's450x450')
+                      third[i].imgUrl = end
+                      allProductId.push(third[i].productId)
+                    }
+                    wx.setStorageSync('all', third)
+                    wx.setStorageSync('allProductId', allProductId)
+                  }
+                })
+              }
+            }
+          })
+        }
       }
     })
     // 获取用户信息
@@ -35,6 +71,11 @@ App({
   },
   globalData: {
     userInfo: null,
-    commodity_type: null
+    commodity_type: null,
+    rankprice: [],
+    rankcreated: [],
+    newCollection: false,
+    price: [],
+    created: []
   }
 })

@@ -1,0 +1,105 @@
+<view class="containeron">
+  <view class='head'>
+    <view wx:if="{{title==null}}" class='loading'><image src='../../image/loading.png'></image></view>
+    <view wx:else class="bar">{{title}}</view>
+  </view>
+<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+    <!-- <view class="goods-box">
+        <image src="{{goods.image}}" class="goods-thumb"></image>
+        
+        <navigator open-type="switchTab" url="../cart/cart">
+            <view class="carts-icon {{scaleCart?'on':''}}">
+                <image src="/image/cart2.png"></image>
+                <text class="carts-icon-num" wx:if="{{hasCarts}}">{{totalNum}}</text>
+            </view>
+        </navigator>
+        
+        <view class="goods-operation">
+            <text class="goods-operation-num">数量  {{num}}</text>
+            <text class="goods-operation-add" bindtap="addCount">+</text>
+            <text class="goods-to-cart" bindtap="addToCart">加入购物车</text>
+            <image src="/image/cart1.png"  class="goods-cart-img" bindtap="addToCart"></image>
+        </view>
+        <image wx:if="{{show}}" src="/image/cart1.png" class="to-carts-icon"></image>
+        <view class="goods-stock">{{goods.stock}}</view>
+        <view class="goods-title">{{goods.title}}</view>
+        <view class="goods-price">￥ {{goods.price}}</view>
+    </view> -->
+
+
+   
+</view>
+<view class="goods-tab-box">
+        <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">商品详情</view>
+        <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">价格变动</view>
+        <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">商品收藏</view>
+        <view class="goods-content">
+            <view wx:if="{{curIndex === 0}}">
+              <!-- {{goods.detail}} -->
+              <view wx:if="{{title==null}}" class='loading'><image src='../../image/loading.png'></image></view>
+              <view class='details' wx:for="{{sku}}" wx:key="index">
+                {{index}} : {{item}}
+              </view>
+            </view>
+            <view wx:if="{{curIndex === 1}}">
+            <view wx:if="{{title==null}}" class='loading'><image src='../../image/loading.png'></image></view>
+              <view class='pricechange'>
+                <view class="title">
+                  <view class='titleleft'>半年内价格波动</view>
+                  <view class='titleright'>
+                  <view class='animaleft'>
+                    <view class='highestbox'>
+                      
+                    </view>
+                    <view class='animahighestbox'></view>
+                  </view>
+                    <view class='highest'>{{maxmin.max}}</view>
+                  <view class='animaright'>
+                    <view class='lowestbox'>
+                      
+                    </view>
+                    <view class='animalowestbox'></view>
+                  </view>
+                    <view class='lowest'>{{maxmin.min}}</view>
+                  </view>
+                </view>
+                <!-- {{goods.parameter}} -->
+                <view class='content'>
+                  <view class='price' wx:for="{{pricearr}}" wx:key="index">
+                    {{item.created}} : {{item.price}}
+                  </view>
+                  <!-- <view class='created' wx:for="{{created}}" wx:for-item="item1" wx:key="index">
+                      {{item1}} :  
+                  </view>
+                  <view class='price' wx:for="{{price}}" wx:for-item="item2" wx:key="index">
+                      {{item2}}
+                  </view> -->
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{curIndex === 2}}">
+            <view wx:if="{{title==null}}" class='loading'><image src='../../image/loading.png'></image></view>
+              <!-- {{goods.service}} -->
+              <view class='pic'>
+                <image src='{{alldet.imgUrl}}'></image>
+              </view>
+              <view class="section" wx:if="{{!iscollection}}">
+                <view class="section__title" style='font-weight:600'>请选择需要的服务</view>
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                  <view class="picker" style='font-size:12px;'>
+                    <view class='chance'><view>当</view><view>前</view><view>选</view><view>择</view></view>：{{array[index]}}
+                  </view>
+                </picker>
+              </view>
+              <view class="section sectiontwo" wx:else>
+                <picker bindchange="bindPickerChangetwo" value="{{index}}" range="{{array}}">
+                  <view class="picker pickertwo" style='font-size:12px;'>
+                    <button class='button'>点击更改服务</button>
+                  </view>
+                </picker>
+              </view>
+              <button wx:if="{{!iscollection}}" class='blue' bindtap='collection'> 收藏 </button>
+              <button wx:else class='red' bindtap='discollection'> 取消收藏 </button>
+            </view>
+        </view>
+    </view>

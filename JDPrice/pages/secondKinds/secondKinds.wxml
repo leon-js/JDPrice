@@ -1,8 +1,0 @@
-<block wx:key="{{index}}" wx:for="{{secondary_type}}">
-    <view class='content' bindtap='third_type'>
-      <image class='content_img' src='../../static/testImg/unlogin.png'></image>
-      <text class='content_text'>{{item}}</text>
-      <text class='content_text_right'>></text>
-    </view>
-    <view class="person-line"></view>
-  </block>

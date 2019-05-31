@@ -1,15 +1,61 @@
 <!--index.wxml-->
-<view class="container">
+<!-- <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 授权 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       
     </block>
   </view>
-  <!-- <view class="usermotto">
+  <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view> -->
+  </view>
   <button type="primary" bindtap="goEmail">绑定邮箱</button>
+</view> -->
+
+<!--pages/personal/personal.wxml-->
+<!-- <text>pages/personal/personal.wxml</text> -->
+<view class="personal">
+
+    <view class="head">
+
+      <view class='userInfo'>
+        <image class="userinfo-avatar" src='../../image/unlogin.png' wx:if="{{!hasUserInfo && canIUse}}"></image>
+        <button type="primary" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击授权登录 </button>
+        <block wx:else>
+          <image bindtap="getPersonalDetails" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+      </view>
+
+    </view>
+
+    <view class='body'>
+      <view class='content' bindtap='goAll'>
+        <image class='content_img' src='../../image/shangpin.png'></image>
+        <text class='content_text'>收藏商品</text>
+        <text class='content_text_right'>></text>
+      </view>
+      <!-- <view class="person-line"></view>
+      <view class='content' bindtap='chat'>
+        <image class='content_img' src='../../image/标签.png'></image>
+        <text class='content_text'>收藏标签</text>
+        <text class='content_text_right'>></text>
+      </view> -->
+      <view class="person-line"></view>
+      <view class='content' bindtap="goEmail">
+        <image class='content_img' src='../../image/youxiang.png'></image>
+        <text class='content_text'>邮箱绑定</text>
+        <text class='content_text_right'>></text>
+      </view>
+      <view class="person-line"></view>
+      <view class='content' bindtap='chat'>
+        <image class='content_img' src='../../image/biaoqian.png'></image>
+        <text class='content_text'>全民交流（开发中，可试用）</text>
+        <text class='content_text_right'>></text>
+      </view>
+      <view class="person-line"></view>
+    </view>
 </view>
+
