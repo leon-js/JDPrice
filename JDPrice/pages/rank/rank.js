@@ -8,6 +8,7 @@ Page({
   },
   test(e){
     console.log(e.currentTarget.dataset.item)
+    console.log(e)
     var id = e.currentTarget.dataset.item
     wx.showLoading({
       title: '加载中...',
